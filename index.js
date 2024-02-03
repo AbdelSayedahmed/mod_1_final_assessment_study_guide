@@ -831,13 +831,15 @@ console.log(isPowerOfTwo(16)); // Output: true
 
 // Develop a function to rotate elements in an array to the left by a given number of positions.
 
-// console.log(rotateArrayLeft([1, 2, 3, 4, 5], 2)); // Output: [3, 4, 5, 1, 2]
+const rotateArrayLeft = (arr, x) => arr.slice(x).concat(arr.slice(0, x));
+
+console.log(rotateArrayLeft([1, 2, 3, 4, 5], 2)); // Output: [3, 4, 5, 1, 2]
 
 // ------------------------------------------------------------
 
 // Create a function to find the difference between two arrays.
 
-// console.log(findArrayDifference([1, 2, 3], [2, 3, 4])); // Output: [1]
+console.log(findArrayDifference([1, 2, 3], [2, 3, 4])); // Output: [1]
 
 // ------------------------------------------------------------
 
