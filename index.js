@@ -177,9 +177,9 @@ console.log(sumOddNumbersArray([1, 2, 3, 4, 5])); // Output: 9
 
 const findMaxUsingLoop = (arr) => {
     let max = arr[0];
-    for (ele of arr) {
-        if (ele > max) {
-            max = ele;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
         }
     }
     return max;
@@ -217,291 +217,451 @@ console.log(findMaxUsingMathMax([1, 5, 19, 8, 2])); // Output: 19
 
 // Implement a function to create a new array with all numbers doubled using a for loop and the accumulator pattern.
 
-// console.log(doubleNumbersUsingLoop([1, 2, 3])); // Output: [2, 4, 6]
-// console.log(doubleNumbersUsingLoop([1, 3, 7, 10])); // Output: [2, 6, 14, 20]
+const doubleNumbersUsingLoop = (arr) => {
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        result.push(arr[i] * 2)
+    }
+    return result;
+}
+
+console.log(doubleNumbersUsingLoop([1, 2, 3])); // Output: [2, 4, 6]
+console.log(doubleNumbersUsingLoop([1, 3, 7, 10])); // Output: [2, 6, 14, 20]
 
 // ------------------------------------------------------------
 
 // Write a function to create a new array with all numbers doubled using the .map method.
 
-// console.log(doubleNumbersUsingMap([1, 2, 3])); // Output: [2, 4, 6]
-// console.log(doubleNumbersUsingLoop([1, 3, 7, 10])); // Output: [2, 6, 14, 20]
+const doubleNumbersUsingMap = (arr) => {
+    let result = arr.map((num) => num * 2);
+    return result;
+}
+
+console.log(doubleNumbersUsingMap([1, 2, 3])); // Output: [2, 4, 6]
+console.log(doubleNumbersUsingMap([1, 3, 7, 10])); // Output: [2, 6, 14, 20]
 
 // ------------------------------------------------------------
 
 // Develop a function to create a new array with only the odd numbers using a for loop and the accumulator pattern.
 
-// console.log(oddNumbersUsingLoop([1, 2, 3])); // Output: [1, 3]
-// console.log(oddNumbersUsingLoop([2, 3, 4, 5, 6, 7])); // Output: [3, 5 ,7]
+const oddNumbersUsingLoop = (arr) => {
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] & 2 !== 0 ? result.push(arr[i]) : null;
+    }
+    return result;
+}
+
+console.log(oddNumbersUsingLoop([1, 2, 3])); // Output: [1, 3]
+console.log(oddNumbersUsingLoop([2, 3, 4, 5, 6, 7])); // Output: [3, 5 ,7]
 
 // ------------------------------------------------------------
 
 // Create a function to create a new array with only the odd numbers using the .filter method.
 
-// console.log(oddNumbersUsingFilter([1, 2, 3])); // Output: [1, 3]
-// console.log(oddNumbersUsingLoop([2, 3, 4, 5, 6, 7])); // Output: [3, 5 ,7]
+const oddNumbersUsingFilter = (arr) => {
+    let result = arr.filter((num) => num % 2 !==0);
+    return result;
+}
+
+console.log(oddNumbersUsingFilter([1, 2, 3])); // Output: [1, 3]
+console.log(oddNumbersUsingFilter([2, 3, 4, 5, 6, 7])); // Output: [3, 5 ,7]
 
 // ------------------------------------------------------------
 
 // Implement a function to find an element in an array using a for loop and the accumulator pattern. If the element can't be found in the array return an error string
 
-// console.log(findElementUsingLoop([1, 2, 3], 2)); // Output: 2
-// console.log(findElementUsingLoop(["a", "b", "c", "d"], "c")); // Output: "c"
-// console.log(findElementUsingLoop([1, 2, 3, 4 ,5], 6)); // Output: "ERROR"
+const findElementUsingLoop = (arr, ele) => {
+    for (let  i = 0; i < arr.length; i++) {
+        if (arr[i] === ele) return arr[i];
+    }
+    return "ERROR"
+}
+
+console.log(findElementUsingLoop([1, 2, 3], 2)); // Output: 2
+console.log(findElementUsingLoop(["a", "b", "c", "d"], "c")); // Output: "c"
+console.log(findElementUsingLoop([1, 2, 3, 4 ,5], 6)); // Output: "ERROR"
 
 // ------------------------------------------------------------
 
 // Write a function to find an element in an array using the .find method.
 
-// console.log(findElementUsingLoop(["a", "b", "c", "d"], "c")); // Output: "c"
-// console.log(findElementUsingLoop([1, 2, 3, 4 ,5], 6)); // Output: "ERROR"
+const findElementUsingFind = (arr, ele) => arr.find((index) => index === ele) || "ERROR"
+
+console.log(findElementUsingFind(["a", "b", "c", "d"], "c")); // Output: "c"
+console.log(findElementUsingFind([1, 2, 3, 4 ,5], 6)); // Output: "ERROR"
 
 // ------------------------------------------------------------
 
 // Develop a function to set a key in an object to a value if it doesn't exist, and return the object. If the key exists, return the object as is.
 
-// console.log(setKeyValueInObject({ key1: 'value1' }, 'key2', 'value2')); 
+const setKeyValueInObject = (obj, key, value) => {
+    if (!obj[key]) {
+        obj[key] = value;
+    }
+    return obj;
+}
+
+console.log(setKeyValueInObject({ key1: 'value1' }, 'key2', 'value2')); 
 // Output: { key1: 'value1', key2: 'value2' }
 
-// console.log(setKeyValueInObject({ key1: 'value1' }, 'key1', 'value2')); 
+console.log(setKeyValueInObject(  { key1: 'value1' }, 'key1', 'value2')); 
 // Output: { key1: 'value1' }
 
 // ------------------------------------------------------------
 
 // Create a function to return a new array with only unique elements from an array with duplicate elements.
 
-// console.log(uniqueElementsArray([1, 2, 2, 3])); // Output: [1, 2, 3]
-// console.log(uniqueElementsArray([1, 2, 2, 3, 3, 4, 3, 2])); // Output: [1, 2, 3, 4]
+const uniqueElementsArray = (arr) => {
+    let obj = {};
+    for (let i of arr) {
+        obj[i] = true;
+    }
+    let result = Object.keys(obj);
+    return result;
+}
+
+console.log(uniqueElementsArray([1, 2, 2, 3])); // Output: [1, 2, 3]
+console.log(uniqueElementsArray([1, 2, 2, 3, 3, 4, 3, 2])); // Output: [1, 2, 3, 4]
 
 // ------------------------------------------------------------
 
 // Write a function to return an object with the elements as keys and the count of them as values.
 
-// console.log(elementsCountObject([1, 2, 2, 3])); 
+const elementsCountObject = (arr) => {
+    let result = {};
+    for (let i of arr) {
+        result[i] = result[i] + 1 || 1;
+    }
+    return result;
+}
+
+console.log(elementsCountObject([1, 2, 2, 3])); 
 // Output: { '1': 1, '2': 2, '3': 1 }
 
-// console.log(elementsCountObject(["a", "b", "b", "a", "c", "d", "a"])); 
+console.log(elementsCountObject(["a", "b", "b", "a", "c", "d", "a"])); 
 // Output: { a: 3, b: 2, c: 1, d: 1 }
 
 // ------------------------------------------------------------
 
 // Implement a function to return an array of all the keys in an object.
 
-// console.log(keysArray({ key1: 'value1', key2: 'value2' })); 
+const keysArray = (obj) => Object.keys(obj);
+
+console.log(keysArray({ key1: 'value1', key2: 'value2' }));
 // Output: ['key1', 'key2']
 
 // ------------------------------------------------------------
 
 // Develop a function to return an array of all the values in an object.
 
-// console.log(valuesArray({ key1: 'value1', key2: 'value2' })); 
+const valuesArray = (obj) => Object.values(obj);
+
+console.log(valuesArray({ key1: 'value1', key2: 'value2' })); 
 // Output: ['value1', 'value2']
 
 // ------------------------------------------------------------
 
 // Write a function to round up a decimal number.
 
-// console.log(roundUpDecimal(3.14)); // Output: 4
-// console.log(roundUpDecimal(5.74)); // Output: 6
+const roundUpDecimal = (num) => Math.ceil(num);
+
+console.log(roundUpDecimal(3.14)); // Output: 4
+console.log(roundUpDecimal(5.74)); // Output: 6
 
 // ------------------------------------------------------------
 
 // Implement a function to round down a decimal number.
 
-// console.log(roundDownDecimal(3.14)); // Output: 3
-// console.log(roundDownDecimal(5.74)); // Output: 5
+const roundDownDecimal = (num) => Math.floor(num);
+
+console.log(roundDownDecimal(3.14)); // Output: 3
+console.log(roundDownDecimal(5.74)); // Output: 5
 
 // ------------------------------------------------------------
 
 // Develop a function to return the sum of all numbers in an array using the .reduce method.
 
-// console.log(sumArrayReduce([1, 2, 3, 4])); // Output: 10
-// console.log(sumArrayReduce([1, 2, 3, 4, 5])); // Output: 15
+const sumArrayReduce = (arr) => arr.reduce((a, b) => a + b);
+
+console.log(sumArrayReduce([1, 2, 3, 4])); // Output: 10
+console.log(sumArrayReduce([1, 2, 3, 4, 5])); // Output: 15
 
 // ------------------------------------------------------------
 
 // Create a function to return the product of all numbers in an array using the .reduce method.
 
-// console.log(productArrayReduce([1, 2, 3, 4])); // Output: 24
-// console.log(productArrayReduce([1, 2, 3, 4, 5])); // Output: 120
+const productArrayReduce = (arr) => arr.reduce((a, b) => a * b);
+
+console.log(productArrayReduce([1, 2, 3, 4])); // Output: 24
+console.log(productArrayReduce([1, 2, 3, 4, 5])); // Output: 120
 
 // ------------------------------------------------------------
 
 // Implement a function to calculate the average of numbers in an array.
 
-// console.log(averageArray([1, 2, 3, 4])); // Output: 2.5
-// console.log(averageArray([1, 2, 3, 4, 5])); // Output: 3
+const averageArray = (arr) => arr.reduce((a, b) => a + b) / arr.length;
+
+console.log(averageArray([1, 2, 3, 4])); // Output: 2.5
+console.log(averageArray([1, 2, 3, 4, 5])); // Output: 3
 
 // ------------------------------------------------------------
 
 // Write a function to calculate the factorial of a given number.
 
-// console.log(factorial(5)); // Output: 120
-// console.log(factorial(6)); // Output: 720
+const factorial = (num) => {
+    let result = num;
+    for (let i = 1; i < num; i++) {
+        result *= num - i;
+    }
+    return result;
+}
+
+console.log(factorial(5)); // Output: 120
+console.log(factorial(6)); // Output: 720
 
 // ------------------------------------------------------------
 
 // Develop a function to return the reverse of a given string.
 
-// console.log(reverseString("hello")); // Output: 'olleh'
-// console.log(reverseString("hello world")); // Output: 'dlrow olleh'
+const reverseString = (str) => str.split('').reverse().join('');
+
+console.log(reverseString("hello")); // Output: 'olleh'
+console.log(reverseString("hello world")); // Output: 'dlrow olleh'
 
 // ------------------------------------------------------------
 
 // Develop a function to convert a temperature from Celsius to Fahrenheit.
 
-// console.log(celsiusToFahrenheit(25)); // Output: 77
-// console.log(celsiusToFahrenheit(31)); // Output: 87.8
+const celsiusToFahrenheit = (degree) => ((degree * (9 / 5)) + 32).toFixed(1);
+
+
+console.log(celsiusToFahrenheit(25)); // Output: 77
+console.log(celsiusToFahrenheit(31)); // Output: 87.8
 
 // ------------------------------------------------------------
 
 // Write a function to find the longest word in a given string.
 
-// console.log(findLongestWord("The quickest brown fox")); // Output: 'quickest'
-// console.log(findLongestWord("The brown fox")); // Output: 'brown'
+const findLongestWord = (str) => {
+    let words = str.split(' ');
+    let result = words[0];
+    for (let ele of words) {
+        if (ele.length > result.length) result = ele; 
+    }
+    return result;
+}
+
+console.log(findLongestWord("The quickest brown fox")); // Output: 'quickest'
+console.log(findLongestWord("The brown fox")); // Output: 'brown'
 
 // ------------------------------------------------------------
 
 // Implement a function to count the occurrences of a specific element in an array.
 
-// console.log(countOccurrences([1, 2, 2, 3], 2)); // Output: 2
-// console.log(countOccurrences([1, 2, 2, 3, 4, 5, 3, 3, 3], 3)); // Output: 4
-// console.log(countOccurrences([1, 2, 2, 3, 4, 5, 3, 3, 3], 7)); // Output: 0
+const countOccurrences = (arr, index) => {
+    let counter = 0;
+    for (let x of arr) {
+        if (x === index) counter++;
+    }
+    return counter;
+}
+
+console.log(countOccurrences([1, 2, 2, 3], 2)); // Output: 2
+console.log(countOccurrences([1, 2, 2, 3, 4, 5, 3, 3, 3], 3)); // Output: 4
+console.log(countOccurrences([1, 2, 2, 3, 4, 5, 3, 3, 3], 7)); // Output: 0
 
 // ------------------------------------------------------------
 
 // Create a function to check if all elements in an array are of the same type.
 
-// console.log(areAllSameType([1, 2, 'three'])); // Output: false
-// console.log(areAllSameType([1, 2, 3])); // Output: true
+const areAllSameType = (arr) => {
+    let type = typeof(arr[0]);
+    for (let ele of arr) {
+        if (typeof(ele) !== type) return false;
+    }
+    return true;
+}
+
+console.log(areAllSameType([1, 2, 'three'])); // Output: false
+console.log(areAllSameType([1, 2, 3])); // Output: true
 
 // ------------------------------------------------------------
 
 // Implement a function to find the index of the first occurrence of a given element in an array.
 
-// console.log(findIndexOfElement([1, 2, 3], 2)); // Output: 1
-// console.log(findIndexOfElement([1, 2, 3, 4, 5, 6], 5)); // Output: 4
-// console.log(findIndexOfElement([1, 2, 3, 4, 5, 6, 4], 4)); // Output: 3
+const findIndexOfElement = (arr, ele) => arr.indexOf(ele) || "ERROR";
+
+console.log(findIndexOfElement([1, 2, 3], 2)); // Output: 1
+console.log(findIndexOfElement([1, 2, 3, 4, 5, 6], 5)); // Output: 4
+console.log(findIndexOfElement([1, 2, 3, 4, 5, 6, 4], 4)); // Output: 3
 
 // ------------------------------------------------------------
 
 // Develop a function to reverse the order of elements in an array.
 
-// console.log(reverseArray([1, 2, 3])); // Output: [3, 2, 1]
-// console.log(reverseArray([3, 2, 1])); // Output: [1, 2, 3]
+const reverseArray = (arr) => arr.reverse();
+
+console.log(reverseArray([1, 2, 3])); // Output: [3, 2, 1]
+console.log(reverseArray([3, 2, 1])); // Output: [1, 2, 3]
 
 // ------------------------------------------------------------
 
 // Implement a function to capitalize the first letter of a string.
 
-// console.log(capitalizeFirstLetter("hello")); // Output: 'Hello'
-// console.log(capitalizeFirstLetter("hello world")); // Output: 'Hello world'
+const capitalizeFirstLetter = (str) => str[0].toUpperCase() + str.slice(1);
+
+console.log(capitalizeFirstLetter("hello")); // Output: 'Hello'
+console.log(capitalizeFirstLetter("hello world")); // Output: 'Hello world'
 
 // ------------------------------------------------------------
 
 // Write a function to check if a given number is within a specified range.
 
-// console.log(isNumberInRange(5, 1, 10)); // Output: true
-//                            (num, start, end)
-// console.log(isNumberInRange(12, 1, 10)); // Output: false
+const isNumberInRange = (num, start, end) => num >= start && num <= end;
+
+console.log(isNumberInRange(5, 1, 10)); // Output: true
+console.log(isNumberInRange(12, 1, 10)); // Output: false
 
 // ------------------------------------------------------------
 
 // Develop a function to count the number of vowels in a string.
 
-// console.log(countVowels("Hello, World!")); // Output: 3
-// console.log(countVowels("Good Morning")); // Output: 4
+const countVowels = (str) => str.match(/[aeiou]/gi).length || 0;
+
+console.log(countVowels("Hello, World!")); // Output: 3
+console.log(countVowels("Good Morning")); // Output: 4
 
 // ------------------------------------------------------------
 
 // Write a function to calculate the area of a circle given its radius.
 
-// console.log(calculateCircleArea(5)); // Output: 78.54
-// console.log(calculateCircleArea(6)); // Output: 113.1
+const calculateCircleArea = (rad) => (Math.PI * (rad ** 2)).toFixed(2);
+
+console.log(calculateCircleArea(5)); // Output: 78.54
+console.log(calculateCircleArea(6)); // Output: 113.1
 
 // ------------------------------------------------------------
 
 // Develop a function to remove a specific character from a string.
 
-// console.log(removeSpecificCharacters("Hello, World!", "l")); // Output: 'Heo, Word!'
-// console.log(removeSpecificCharacters("Hello, World!", "o")); // Output: 'Hell, Wrld!'
+const removeSpecificCharacters = (str, x) => str.split(x).join('');
+
+console.log(removeSpecificCharacters("Hello, World!", "l")); // Output: 'Heo, Word!'
+console.log(removeSpecificCharacters("Hello, World!", "o")); // Output: 'Hell, Wrld!'
 
 // ------------------------------------------------------------
 
 // Create a function to find the object with the longest array among an array of objects, each containing a key pointing to an array.
 
-// console.log(objectWithLongestArray([
-//   { key: 'array1', value: [1, 2, 3] },
-//   { key: 'array2', value: [1, 2, 3, 4, 5] }
-// ])); // Output: { key: 'array2', value: [1, 2, 3, 4, 5] }
+const objectWithLongestArray = (obj) => {
+    let result = obj[0];
+    for (ele of obj) {
+        if (ele.value.length > result.value.length) result = ele;
+    }
+    return result;
+}
+
+console.log(objectWithLongestArray([
+  { key: 'array1', value: [1, 2, 3] },
+  { key: 'array2', value: [1, 2, 3, 4, 5] }
+])); // Output: { key: 'array2', value: [1, 2, 3, 4, 5] }
 
 // ------------------------------------------------------------
 
 // Develop a function to return a new array of only the values of a specified key from an array of objects.
 
-// console.log(arrayValuesByKey([
-//   { name: 'John', age: 30 },
-//   { name: 'Jane', age: 25 },
-//   { name: 'Bob', age: 35 }
-// ], 'age')); // Output: [30, 25, 35]
+const arrayValuesByKey = (obj, key) => {
+    let result = [];
+    for (ele of obj) {
+        result.push(ele[key]);
+    }
+    return result;
+}
 
-// console.log(arrayValuesByKey([
-//   { name: 'John', age: 30 },
-//   { name: 'Jane', age: 25 },
-//   { name: 'Bob', age: 35 }
-// ], 'name')); // Output: ["John", "Jane", "Bob"]
+console.log(arrayValuesByKey([
+  { name: 'John', age: 30 },
+  { name: 'Jane', age: 25 },
+  { name: 'Bob', age: 35 }
+], 'age')); // Output: [30, 25, 35]
+
+console.log(arrayValuesByKey([
+  { name: 'John', age: 30 },
+  { name: 'Jane', age: 25 },
+  { name: 'Bob', age: 35 }
+], 'name')); // Output: ["John", "Jane", "Bob"]
 
 // ------------------------------------------------------------
 
 // Write a function to return the value of a decimal number rounded to the nearest whole number.
 
-// console.log(roundToNearestWholeNumber(3.5)); // Output: 4
-// console.log(roundToNearestWholeNumber(3.4)); // Output: 3
-// console.log(roundToNearestWholeNumber(3.9)); // Output: 4
+const roundToNearestWholeNumber = (num) => Math.round(num);
+
+console.log(roundToNearestWholeNumber(3.5)); // Output: 4
+console.log(roundToNearestWholeNumber(3.4)); // Output: 3
+console.log(roundToNearestWholeNumber(3.9)); // Output: 4
 
 // ------------------------------------------------------------
 
 // Write a function that takes an object and a property name, and removes the specified property from the object.
 
-// console.log(removeProperty({ name: 'John', age: 30 }, 'age')); 
+const removeProperty = (obj, property) => {
+    delete obj[property]; return obj;
+}
+
+console.log(removeProperty({ name: 'John', age: 30 }, 'age')); 
 // Output: { name: 'John' }
 
-// console.log(removeProperty({ name: 'John', age: 30 }, 'name')); 
+console.log(removeProperty({ name: 'John', age: 30 }, 'name')); 
 // Output: { age: 30 }
 
 // ------------------------------------------------------------
 
 // Write a function that takes two objects and merges them into a new object.
 
-// console.log(mergeObjects({ name: 'John' }, { age: 30 })); 
+const mergeObjects = (obj1, obj2) => Object.assign(obj1, obj2);
+
+console.log(mergeObjects({ name: 'John' }, { age: 30 })); 
 // Output: { name: 'John', age: 30 }
 
 // ------------------------------------------------------------
 
 // Write a function that takes an array of objects, each containing a key-value pair with a key pointing to an array, and returns the object with the longest array.
 
-// console.log(findObjectWithLongestValue([
-//   { key: 'array1', value: [1, 2, 3] },
-//   { key: 'array2', value: [1, 2, 3, 4, 5, 6] },
-//   { key: 'array3', value: [1, 2] }
-// ])); // Output: { key: 'array2', value: [1, 2, 3, 4, 5, 6] }
+const findObjectWithLongestValue = (obj) => {
+    let result = obj[0];
+    for (ele of obj) {
+        if (ele.value.length > result.value.length) result = ele;
+    }
+    return result;
+}
+
+console.log(findObjectWithLongestValue([
+  { key: 'array1', value: [1, 2, 3] },
+  { key: 'array2', value: [1, 2, 3, 4, 5, 6] },
+  { key: 'array3', value: [1, 2] }
+])); // Output: { key: 'array2', value: [1, 2, 3, 4, 5, 6] }
 
 // ------------------------------------------------------------
 
 // Write a function that takes an array of objects and a property name, and sorts the objects in ascending order based on the specified property.
 
-// console.log(sortObjectsByProperty([
-//   { name: 'John', age: 30 },
-//   { name: 'Jane', age: 25 },
-//   { name: 'Bob', age: 35 }
-// ], 'age')); 
-// Output: [ { name: 'Jane', age: 25 }, { name: 'John', age: 30 }, { name: 'Bob', age: 35 } ]
+const sortObjectsByProperty = (obj, property) => obj.sort((a, b) => a[property] - b[property]);
+
+console.log(sortObjectsByProperty([
+  { name: 'John', age: 30 },
+  { name: 'Jane', age: 25 },
+  { name: 'Bob', age: 35 }
+], 'age')); 
+Output: [ { name: 'Jane', age: 25 }, { name: 'John', age: 30 }, { name: 'Bob', age: 35 } ]
 
 // ------------------------------------------------------------
 
 // Write a function to remove duplicates from an array.
 
-// console.log(removeDuplicates([1, 2, 2, 3])); // Output: [1, 2, 3]
+const removeDuplicates = (arr) => [...new Set(arr)];
+
+console.log(removeDuplicates([1, 2, 2, 3])); // Output: [1, 2, 3]
 
 // ------------------------------------------------------------
 
