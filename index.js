@@ -1098,31 +1098,77 @@ console.log(compressString("aaabbbccc")); // Output: 'a3b3c3'
 
 // Write a function to convert a decimal number to hexadecimal.
 
-// console.log(decimalToHexadecimal(255)); // Output: 'FF'
+const decimalToHexadecimal = (num) => num <= 256 ? num.toString(16) : null;
+
+console.log(decimalToHexadecimal(255)); // Output: 'FF'
 
 // ------------------------------------------------------------
 
 // Create a function to check if a number is a palindrome.
 
-// console.log(isNumberPalindrome(121)); // Output: true
+const isNumberPalindrome = (num) => {
+  let strNum = num.toString();
+  let revStrNum = strNum.split('').reverse().join('');
+
+  return strNum === revStrNum;
+}
+
+console.log(isNumberPalindrome(121)); // Output: true
+console.log(isNumberPalindrome(123)); // Output: false
 
 // ------------------------------------------------------------
 
 // Implement a function to calculate the sum of digits in a given number.
 
-// console.log(calculateSumOfDigits(123)); // Output: 6
+const calculateSumOfDigits = (num) => {
+  let arr = num.toString().split(''), sum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    sum += parseInt(arr[i], 10);
+  }
+
+  return sum;
+}
+
+console.log(calculateSumOfDigits(123)); // Output: 6
 
 // ------------------------------------------------------------
 
 // Write a function to find the least common multiple (LCM) of two numbers.
 
-// console.log(findLCM(12, 18)); // Output: 36
+const findLCM = (num1, num2) => {
+  debugger;
+  let num1total = num1;
+  let num2total = num2;
+
+  while (true) {
+    num1total += num1;
+    if (num1total === num2total) {
+      return num1total;
+    }
+    num2total += num2;
+  }
+}
+
+console.log(findLCM(12, 18)); // Output: 36
 
 // ------------------------------------------------------------
 
 // Develop a function to find the longest common prefix of an array of strings.
 
-// console.log(findLongestCommonPrefix(["apple", "apricot", "apex"])); // Output: 'ap'
+const findLongestCommonPrefix = (strs) => {
+  let prefix = strs[0];
+
+    for (let i = 1; i < strs.length; i++) {
+        while (strs[i].indexOf(prefix) !== 0) {
+            prefix = prefix.slice(0, prefix.length - 1);
+        }
+    }
+
+    return prefix;
+}
+
+console.log(findLongestCommonPrefix(["apple", "apricot", "apex"])); // Output: 'ap'
 
 // ------------------------------------------------------------
 
@@ -1142,12 +1188,27 @@ console.log(findMissingNumber([1, 2, 3, 5])); // Output: 4
 
 // Implement a function to check if a given string is an integer or a floating-point number.
 
-// console.log(isValidNumber("123.45")); // Output: true
+const isValidNumber = (num) => Number(num) ? true : false;
+
+console.log(isValidNumber("123.45")); // Output: true
+console.log(isValidNumber("123..45")); // Output: false
+console.log(isValidNumber("!123.45")); // Output: false
 
 // ------------------------------------------------------------
 
 // Write a function to check if a given number is a Fibonacci number.
 
-// console.log(isFibonacciNumber(21)); // Output: true
+const isFibonacciNumber = (num) => {
+  debugger;
+  const fibArr = [0, 1];
+
+  while (fibArr.at(-1) < num) {
+    fibArr.push(fibArr.at(-1) + fibArr.at(-2));
+  }
+
+  return fibArr.at(-1) === num;
+}
+
+console.log(isFibonacciNumber(21)); // Output: true
 
 // ------------------------------------------------------------
